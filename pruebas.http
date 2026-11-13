@@ -1,32 +1,95 @@
-### Archivo de pruebas · reemplazá las rutas por las de tu enunciado
+### Archivo de pruebas - Taller mecánico
 ### En IntelliJ: abrí este archivo y tocá el ▶ verde de cada petición.
 
 @base = http://localhost:8080/api
 
-### Listar
-GET {{base}}/recursos
-
-### Crear
-POST {{base}}/recursos
+### Crear cliente
+POST {{base}}/clientes
 Content-Type: application/json
 
 {
-  "campo1": "valor",
-  "campo2": "valor",
-  "campo3": "valor"
+  "nombre": "Carlos Ruiz",
+  "telefono": "3825123456"
 }
 
-### Buscar por id
-GET {{base}}/recursos/1
+### Listar clientes
+GET {{base}}/clientes
 
-### Error de validación (400)
-POST {{base}}/recursos
+### Crear vehículo
+POST {{base}}/vehiculos
 Content-Type: application/json
 
-{ "campo1": "" }
+{
+  "patente": "AB123CD",
+  "marca": "Fiat",
+  "modelo": "Cronos",
+  "clienteId": 1
+}
 
-### Cambiar estado
-PATCH {{base}}/otro-recurso/1/estado
+### Listar vehículos
+GET {{base}}/vehiculos
+
+### Buscar vehículo
+GET {{base}}/vehiculos/1
+
+### Crear orden
+POST {{base}}/ordenes
 Content-Type: application/json
 
-{ "estado": "OTRO_ESTADO" }
+{
+  "vehiculoId": 1,
+  "descripcion": "Cambio de aceite"
+}
+
+### Cambiar estado a EN_REPARACION
+PATCH {{base}}/ordenes/1/estado
+Content-Type: application/json
+
+{
+  "estado": "EN_REPARACION"
+}
+
+### Cargar costo final
+PUT {{base}}/ordenes/1
+Content-Type: application/json
+
+{
+  "descripcion": "Cambio de aceite y filtro",
+  "costoFinal": 45000
+}
+
+### Entregar orden
+PATCH {{base}}/ordenes/1/estado
+Content-Type: application/json
+
+{
+  "estado": "ENTREGADO"
+}
+
+### Consultar órdenes por estado
+GET {{base}}/ordenes?estado=EN_REPARACION
+
+### Historial por patente
+GET {{base}}/vehiculos/patente/AB123CD/historial
+
+### Crear repuesto
+POST {{base}}/repuestos
+Content-Type: application/json
+
+{
+  "nombre": "Filtro de aceite",
+  "precio": 12000,
+  "stock": 10
+}
+
+### Agregar repuesto a una orden
+POST {{base}}/ordenes/1/repuestos
+Content-Type: application/json
+
+{
+  "repuestoId": 1,
+  "cantidad": 2
+}
+
+### Facturación mensual
+GET {{base}}/ordenes/facturacion?mes=2026-11
