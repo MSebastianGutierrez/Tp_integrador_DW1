@@ -1,6 +1,6 @@
 # TP Integrador DAW1 - Taller mecánico
 
-**Alumno/a:** Gutiérrez, Sebastián · **Legajo:** (completar)
+**Alumno/a:** Gutiérrez, Sebastián · **Legajo:** 510127 ·
 **Enunciado elegido:** taller
 
 ## Descripción
